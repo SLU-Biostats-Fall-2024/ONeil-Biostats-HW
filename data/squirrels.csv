@@ -1,0 +1,36 @@
+Date ,Location,Start_time,End_time,Conditions,Trap_zone ,Species,Total_wt,Bag_wt,Sq_wt,Sex,Age,PIT_Tag,Ear_tag,Fur_dye,Freeze_brand
+6-Sep-10,slu campus,14:23,15:30,cloudy,E,SCCA,860,NA,NA,Male,Adult,NA,R001,right hip,right hip
+6-Sep-10,slu campus,14:23,15:30,cloudy,F,SCCA,NA,NA,NA,Male,Adult,NA,NA,right hip,rgiht leg 
+6-Sep-10,slu campus,14:23,15:30,cloudy,B,SCCA,800,NA,NA,Male,Adult,NA,R002,center rump,left leg
+6-Sep-10,slu campus,14:23,15:30,cloudy,B,SCCA,700,NA,NA,Male,Adult,NA,R003,left leg',left middle
+6-Sep-10,slu campus,14:23,15:30,cloudy,B,SCCA,780,NA,NA,Male,Adult,NA,R004,left middle ,right middle
+8-Sep-10,NA,7:30,9:10,partly cloudy,C,SCCA,950,NA,NA,Female,Adult,NA,L005,back middle,left hip 
+8-Sep-10,NA,7:30,9:10,partly cloudy,C,SCCA,750,NA,NA,Female,Adult,NA,L007,left hip ,center rump 
+8-Sep-10,NA,7:30,9:10,partly cloudy,C,SCCA,730,NA,NA,Male,Adult,NA,R008,left hip ,left hip 
+8-Sep-10,NA,7:30,9:10,partly cloudy,C,SCCA,710,NA,NA,Male,Subadult,NA,NA,right middle,right shoulder
+8-Sep-10,NA,7:30,9:10,partly cloudy,C,SCCA,780,NA,NA,Female,NA,NA,NA,NA,right hip
+8-Sep-10,NA,7:30,9:10,partly cloudy,C,SCCA,790,NA,NA,Female,Adult,NA,L009,right hip,right leg
+10-Sep-10,jhs,13:30,14:10,cloudy,C,SCCA,800,NA,NA,Female,Adult,NA,L018,center rump,right hip
+10-Sep-10,jhs,13:30,14:10,cloudy,C,SCCA,790,NA,NA,Male,Adult,NA,R011,right hip,right leg
+10-Sep-10,jhs,13:30,14:10,cloudy,C,SCCA,870,NA,NA,Female,Adult,NA,NA,right leg,center shoulder
+10-Sep-10,jhs,13:30,14:10,cloudy,C,SCCA,NA,NA,NA,Female,Adult,NA,L0009,right leg,right hip
+10-Sep-10,jhs,13:30,14:10,cloudy,C,SCCA,710,NA,NA,Male,Adult,NA,R012,left hip ,right hip
+10-Sep-10,jhs,13:30,14:10,cloudy,C,SCCA,750,NA,NA,Female,Adult,NA,L013,center shoulder,center middle
+1-Oct-10,slu campus,13:30,15:00,cloudy,A9,SCCA,NA,NA,NA,NA,NA,NA,R011,NA,center rump_middle
+1-Oct-10,slu campus,13:30,15:00,cloudy,A10,SCCA,760,NA,NA,Female,NA,NA,L014,left_right leg,NA
+1-Oct-10,slu campus,13:30,15:00,cloudy,A11,SCCA,850,NA,NA,Male,NA,NA,R015,center middle,left leg
+1-Oct-10,slu campus,13:30,15:00,cloudy,C6,SCCA,800,NA,NA,Male,NA,NA,NA,NA,center rump 
+1-Oct-10,slu campus,13:30,15:00,cloudy,F3,SCCA,750,NA,NA,Female,NA,NA,L016,right hip_shoulder,right middle
+1-Oct-10,slu campus,13:30,15:00,cloudy,A11,SCCA,870,NA,NA,Male,NA,NA,R017,left leg_shoulder,right leg_hip
+1-Oct-10,slu campus,13:30,15:00,cloudy,F5,SCCA,840,NA,NA,Female,NA,NA,R018,middle,left leg_hip
+1-Oct-10,slu campus,13:30,15:00,cloudy,C6,SCCA,790,NA,NA,Male,NA,NA,R019,right leg_hip ,left hip 
+8-Oct-10,slu campus,13:40,NA,partly cloudy,C,SCCA,760,NA,NA,Female,NA,L14,L16,NA,center rump_middle
+8-Oct-10,slu campus,13:40,NA,partly cloudy,C,SCCA,760,NA,NA,Female,NA,NA,NA,left knee,NA
+8-Oct-10,slu campus,13:40,NA,partly cloudy,E,SCCA,820,NA,NA,Male,NA,NA,R20,right middle,left leg
+8-Oct-10,slu campus,13:40,NA,partly cloudy,C,SCCA,740,160,NA,Female,NA,NA,NA,left leg_hip ,left_right hip
+8-Oct-10,slu campus,13:40,NA,partly cloudy,E,SCCA,760,NA,NA,Female,NA,NA,NA,NA,right middle_leg
+9/1/11,jhs,9:00,11:30,clear,java field,SCCA,850,160,690,Male,Junior,NA,R051,NA,NA
+1-Sep-11,jhs,9:00,11:30,clear,java field,SCCA,800,160,690,Female,Subadult,NA,NA,center rump_shoulder,left leg
+1-Sep-11,jhs,9:00,11:30,clear,java field,SCCA,720,160,760,Female,Adult,NA,L007,left hip ,right leg_hip
+2-Sep-11,jhs,14:00,NA,clear,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,center rump 
+,,,,,,,,,,,,,,,NA

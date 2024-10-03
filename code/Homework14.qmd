@@ -1,0 +1,13 @@
+---
+title: "Homework 14.qmd"
+format: html
+editor: visual
+---
+
+## Setting things up 
+
+```{r}
+rm(list=ls())
+library(tidyverse)
+library(here)
+```

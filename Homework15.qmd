@@ -1,0 +1,22 @@
+---
+title: "Homework15.qmd"
+format: html
+editor: visual
+---
+
+## Quarto
+
+```{r}
+rm(list=ls())
+library(tidyverse)
+library(here)
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+read.csv("data","compensation.csv")
+```
+
+```{}
+```

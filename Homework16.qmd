@@ -1,0 +1,58 @@
+---
+title: "Homework16.qmd"
+format: html
+editor: visual
+---
+
+## Quarto
+
+Setting things up
+
+```{r}
+rm(list=ls())
+library(here)
+library(tidyverse)
+```
+
+New data frame
+
+```{r}
+read.csv(here("data", "donnerville_percent_cover.csv"))
+donnerville <- as.data.frame(read.csv(here("data", "donnerville_percent_cover.csv")))
+
+
+```
+
+Examining the data
+
+```{r}
+glimpse(donnerville)
+summary(donnerville)
+
+```
+
+```{r}
+donnerville$Site <- as.factor(donnerville$Site)
+donnerville$Plot.type <- as.factor(donnerville$Plot.type)
+donnerville$cover_type <- as.factor(donnerville$cover_type)
+
+```
+
+```{r}
+donnerville$Date <- as.Date(donnerville$Date)
+```
+
+```{r}
+levels(donnerville$cover_type)
+fix <- which(donnerville$cover_type == "bare")
+donnerville$cover_type[fix] <- "Bare"
+fix2 <- which(donnerville$cover_type == "vasc")
+donnerville$cover_type[fix2] <- "Vascular"
+fix3 <- which(donnerville$cover_type == "bryophtes")
+donnerville$cover_type[fix3] <- "Bryophytes"              
+```
+Math 
+```{r}
+
+```
+

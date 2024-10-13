@@ -1,0 +1,50 @@
+---
+title: "Homework-18.qmd"
+format: html
+editor: visual
+---
+
+## Chapter 4 GSWR
+
+```{r}
+rm(list=ls())
+library(tidyverse)
+library(here)
+
+```
+
+```{r}
+read.csv(here("data", "compensation.csv"))
+compensation <- read.csv(here("data", "compensation.csv"))
+```
+
+```{r}
+ggplot(compensation, aes(x= Root, y= Fruit)) + geom_point() #making a plot
+```
+
+Scatter plots
+
+```{r}
+#scatterplot.tutorial.r
+ggplot(compensation, aes(x= Root, y= Fruit)) + geom_point() + theme_bw() #theme gets rid of the grey 
+ggplot(compensation, aes(x= Root, y= Fruit)) + geom_point(size = 5) + theme_bw() #size alters the points 
+ggplot(compensation, aes(x= Root, y= Fruit)) + geom_point(size = 5) + xlab("Root Biomass") + ylab("Fruit Production") + theme_bw()
+ggplot(compensation, aes(x= Root, y= Fruit, colour = Grazing)) + geom_point(size = 5) + xlab("Root Biomass") + ylab("Fruit Production") + theme_bw() #colors and shapes are part of the aesthetics
+
+```
+
+Boxplots
+
+```{r}
+ggplot(compensation, aes(x= Grazing, y= Fruit)) + geom_boxplot() + xlab("Grazing treatment") + ylab("Fruit Production") + theme_bw()
+ggplot(compensation, aes(x= Grazing, y= Fruit)) + geom_boxplot() + geom_point(size = 4, colour = "lightgrey", alpha = .5) + xlab("Grazing treatment") + ylab("Fruit Production") + theme_bw()
+```
+
+Histograms
+
+```{r}
+ggplot(compensation, aes(x= Fruit)) + geom_histogram()
+ggplot(compensation, aes(x= Fruit)) + geom_histogram(bins = 10)
+ggplot(compensation, aes(x= Fruit)) + geom_histogram(binwidth = 15)
+ggplot(compensation, aes(x= Fruit)) + geom_histogram(binwidth = 15) + facet_wrap(~Grazing)
+```

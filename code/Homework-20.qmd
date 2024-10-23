@@ -30,13 +30,21 @@ ggplot(soil, aes(x= SOM_percent)) + geom_histogram()
 ```
 
 How would you describe the mean_SOM data based on viewing the histogram? Write your answer below:
-
+The data is skewed to the right 
 4.  Create a new dataframe called SOM by calculating for each forest the mean soil organic matter and the standard deviation of soil organic matter. Make sure to name variables you create "mean_SOM" and "sd_SOM" so that the next code chunk I give you works.
 
 ```{r}
 SOM = soil %>% 
   group_by(Forest) %>%
   summarize(mean_SOM = mean(SOM_percent ), sd_SOM = sd(SOM_percent))
+```
+```{r}
+#now summarize nitrogen 
+Nit <- soil %>% group_by(Forest) %>% summarise(
+  mean_n = mean(Nitrate_N_ppm, na.rm= T), 
+  sd_n= sd(Nitrate_N_ppm, na.rm= T)
+)
+View(Nit)
 ```
 
 5.  Now run the following code chunk which will create a bar plot of mean soil organic matter per forest, with standard deviation as error bars.
@@ -50,12 +58,12 @@ ggplot(SOM, aes(Forest, mean_SOM))+
 ```
 
 Based on what you see in the bar chart, how would you describe the pattern of SOM between the 4 different forests? Write your answer here:
-The kip tract and Donnerville have higher patterns of SOM than Degrasse and Hammond, but it looks like a normal distribution. 
+The kip tract and Donnerville have higher patterns of SOM than Degrasse and Hammond
 
 Now create a boxplot of the SOM_percent data. Use Forest as the x-axis variable and overlay the point data on top of the boxplot. Make the points blue and somewhat transparent. Call the x-axis "Forest name" and the y-axis "Percent soil organic matter" (hint: See homework 18...).
 
 ```{r}
-ggplot(SOM, aes(x= Forest, y= mean_SOM)) + geom_boxplot() + geom_point(size = 4, colour = "lightblue", alpha = .5) + xlab("Forest name") + ylab("Percent soil organic matter") + theme_bw()
+ggplot(soil, aes(x= Forest, y= SOM_percent)) + geom_boxplot() + geom_point(size = 4, colour = "lightblue", alpha = .5) + xlab("Forest name") + ylab("Percent soil organic matter") + theme_bw()
 ggplot(SOM, aes(x= Forest, y= sd_SOM)) + geom_boxplot() + geom_point(size = 4, colour = "lightblue", alpha = .5) + xlab("Forest name") + ylab("Percent soil organic matter") + theme_bw()
 ```
 
@@ -64,6 +72,6 @@ Based on what you see in the box plot, write out your answers the following ques
 -   how would you describe the pattern of SOM between the 4 different forests?
 It is the highest in the kip tract and lowest in Degrasse and South Hammond 
 -   What do you notice that is different from how the data were displayed in the bar plot?
-The boxplot has lines and while bar plot showed error and length of bars. 
+The boxplot has lines and while bar plot showed error and length of bars.
 -   Which plot type is more informative? Explain your answer.
 Box plot is more informative because it shows more exact info than the bar chart. Bar charts have also been a bad topic in class. 

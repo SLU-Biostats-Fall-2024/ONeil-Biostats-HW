@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-## Setting things up 
+## Setting things up
 
 ```{r}
 rm(list=ls())

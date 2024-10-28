@@ -1,0 +1,84 @@
+---
+title: "Homework-21.qmd"
+format: html
+editor: visual
+---
+
+## My first chi square contingency analysis
+
+```{r}
+#clear r 
+rm(list=ls())
+library(tidyverse)
+library(here)
+
+```
+
+import the data
+
+```{r}
+lady <- read.csv(here("data", "ladybirds.csv"))
+```
+
+change to factor data
+
+```{r}
+lady$Habitat <- as.factor(lady$Habitat)
+lady$Site <- as.factor(lady$Site)
+lady$colour <- as.factor(lady$colour)
+glimpse(lady)
+```
+
+organizing the data for plotting and analysis
+
+```{r}
+totals <- lady %>%
+  group_by(Habitat, colour) %>%
+  summarise(total.number= sum(number))
+```
+
+Using a bar chart to summarize raw data
+
+```{r}
+ggplot(totals, aes(x= Habitat, y= total.number, 
+                   fill = colour)) + 
+  geom_bar(stat = 'identity', positon = 'dodge')
+```
+
+Colors to use
+
+```{r}
+ggplot(totals, aes(x= Habitat, y= total.number, fill = colour)) +
+  geom_bar(stat = 'identity', positon = 'dodge') +
+  scale_fill_manual(values= c(black = "black", red = "red"))
+```
+
+Making the chi square test
+
+```{r}
+lady.mat <- xtabs(number ~ Habitat + colour, data = lady)
+chisq.test(lady.mat)
+lady.chi <- chisq.test(lady.mat)
+names(lady.chi)
+```
+
+Two sample t test
+
+```{r}
+ozone <- read.csv(here("data", "ozone.csv"))
+glimpse(ozone)
+```
+
+create histogram
+
+```{r}
+ggplot(ozone, aes(x= Ozone)) + 
+  geom_histogram(binwidth = 10) + 
+  facet_wrap(~ Garden.location, ncol = 1) + theme_bw()
+```
+
+do the t test
+
+```{r}
+t.test(Ozone ~ Garden.location, data = ozone)
+```

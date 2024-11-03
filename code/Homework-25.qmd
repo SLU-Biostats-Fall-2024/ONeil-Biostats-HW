@@ -1,0 +1,44 @@
+---
+title: "Homework-25.qmd"
+format: html
+editor: visual
+---
+
+## GSWR 5.6 and 5.7
+
+```{r}
+#setting things up
+rm(list=ls())
+library(here)
+library(tidyverse)
+library(ggfortify)
+daphnia <- read.csv(here("data", "Daphniagrowth.csv"))
+```
+
+```{r}
+glimpse(daphnia)
+#box plot for a categorical and a grouping response variable 
+ggplot(daphnia, aes(x= parasite, y= growth.rate)) + geom_boxplot()+ theme_bw() + coord_flip() #flips x and y axis
+```
+
+```{r}
+#construct the anova 
+model_grow <- lm(growth.rate ~ parasite, data= daphnia)
+autoplot(model_grow, smooth.colour = NA)
+anova(model_grow)
+```
+
+```{r}
+summary(model_grow)
+#get the mean growth rates 
+sumDat <- daphnia %>% 
+  group_by(parasite) %>%
+summarise(meanGR = mean(growth.rate))
+```
+
+```{r}
+#installing packages 
+install.packages("devtools")
+library(devtools)
+install_github("sinhrks/ggfortify")
+```

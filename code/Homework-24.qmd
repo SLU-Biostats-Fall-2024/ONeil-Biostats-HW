@@ -46,7 +46,7 @@ Is there a relationship between height and weight in female crabs?
 
 2.  Examine the response and predictor variables and use the flow chart from class to decide the appropriate statistical analysis (choose from: chi-square, 2-sample t-test or linear regression). Explain your answer here:
 ```{r}
-model_hw <- lm(Height ~ Weight, data = female)
+model_hw <- lm(Weight ~ Height, data = female)
 autoplot(model_hw, smooth.colour = NA)
 ```
 
@@ -54,7 +54,7 @@ autoplot(model_hw, smooth.colour = NA)
 ```{r}
 anova(model_hw)
 summary(model_hw)
-ggplot(female, aes( x= Weight, y= Height)) + geom_point() + geom_smooth(method = 'lm')
+ggplot(female, aes( x= Height, y= Weight)) + geom_point() + geom_smooth(method = 'lm')
 ```
 
 ## 

@@ -1,0 +1,32 @@
+---
+title: "practice.qmd"
+format: html
+editor: visual
+---
+
+## practcing group by and summarize
+
+```{r}
+rm(list=ls())
+library(tidyverse)
+library(here)
+df <- read.csv(here("data", "compensation.csv"))
+```
+
+find mean slope based by site
+
+```{r}
+rootmean <- df %>% group_by(Grazing) %>% 
+  summarise(
+    mean_Root = mean(Root, na.rm = T) ,
+    sd_root = sd(Root, na.rm = T)
+  )
+```
+
+practice making new variable in main data set
+
+```{r}
+df <- df %>% mutate(
+  rootx10 = Root*10
+)
+```

@@ -1,0 +1,262 @@
+---
+title: "Homework 27"
+format: html
+editor: visual
+---
+
+Read through the code in this assignment. You will begin contributing to the code on line 36. Your tasks will be to:
+
+-   Create a dataframe with just the complete cases
+
+-   Review the 1-way ANOVA we ran during class with the full data set
+
+-   Conduct a 2nd 1-way ANOVA using just the data set with complete cases and compare the results to the first analysis.
+
+-   Conduct a linear regression to assess the relationship b/w Growth_rate_mm and Dried_mass_g, first with the complete data set and second with the complete cases data set and compare the results of the 2 analyses.
+
+## Set up our workspace and read in the data
+
+```{r}
+rm(list = ls())
+library(tidyverse)
+library(ggfortify)
+library(here)
+```
+
+Read in the data.
+
+```{r}
+df <- read.csv(here("Data/learn-about-NA.csv"))
+str(df)
+```
+
+## Dealing with NAs in data analysis
+
+Deciding how to treat NA values in your data can have critical impacts on your data analysis.
+
+Let's look at an example.
+
+Start by creating a data frame from df called df_All_NA, which includes the entire dataset including all NA values.
+
+```{r}
+df_All_NA <- df
+```
+
+Now use one of the methods we discussed in class on 13 November to create a second dataframe called `df_No_NA` that is just the complete cases of df.
+
+```{r}
+df_No_NA <- complete.cases(df)
+```
+
+What if we wanted to test the hypothesis that there is no effect of fertilizer treatment on plant growth rate?
+
+In class on Wednesday 13 November we ran a 1-way ANOVA on the complete data set. Let's review it here:
+
+### First ANOVA using all the data
+
+#### Plot and Guess
+
+```{r}
+
+ggplot(df_All_NA, aes(Treatment, Growth_rate_mm))+
+  geom_boxplot()+
+  geom_point()+
+  theme_bw()
+```
+
+We decided that there was likely an effect of treatment on growth rate, but we weren't sure if both levels of the fertilizer treatment would differ from the control.
+
+#### Create a model:
+
+```{r}
+grow.mod<-lm(Growth_rate_mm ~ Treatment, data = df_All_NA)
+```
+
+#### Check our assumptions:
+
+```{r}
+autoplot(grow.mod)
+```
+
+Looks pretty good.
+
+#### Interpret results:
+
+```{r}
+anova(grow.mod)
+```
+
+Practice your interpretation.
+There is a significant difference between the treatment levels as the p value is less than .05. (F= 3.6937, df= 2, p = < .05)
+
+Why are there 2 DF for the Treatment effect?
+
+Answer: Because there are 3 levels of our Treatment variable: Control, Level 1, and Level 2. Number of groups - 1 = degrees of freedom therefore 3 - 1 = 2.
+
+Why are there 46 DF for the Residuals? Remember that we determined that there were 49 values in the `Growth_rate_mm` variable using `sum(!is.na(variable))` like this:
+
+```{r}
+sum(!is.na(df$Growth_rate_mm))
+```
+
+So **there are only 49 data points used in the analysis**, even though the dataframe is 60 rows long!!!
+
+49 - 3 = 46 = degrees of freedom for the residuals.
+
+```{r}
+summary(grow.mod)
+```
+
+Practice your interpretation:
+
+Does adding 1 dose of fertilizer change the growth rate significantly from the Control?
+No it does not change significantly
+
+Does adding 2 doses of fertilizer change the growth rate significantly from the Control?
+Yes it changes it significantly
+We won't worry about re-plotting our data right now.
+
+### Second Attempt: Complete Cases
+
+Your turn. Run the 1-way ANOVA again, this time with only the dataset that has complete cases and that we called `df_No_NA`
+
+#### Plot and Guess
+
+```{r}
+df_remove_All <- df[complete.cases(df), ] 
+ggplot(df_remove_All, aes(Treatment, Growth_rate_mm))+
+  geom_boxplot()+
+  geom_point()+
+  theme_bw()
+```
+
+What do you think?
+
+#### Create a model:
+
+```{r}
+grow.mod.no.NA <- lm(Growth_rate_mm ~ Treatment, data = df_remove_All)
+```
+
+#### Check our assumptions:
+
+```{r}
+autoplot(grow.mod.no.NA)
+```
+
+What do you think? Same or different from our first 1-way ANOVA?
+
+#### Interpret results:
+
+```{r}
+anova(grow.mod.no.NA)
+```
+
+Practice your interpretation.
+
+Why are there 2 DF for the Treatment effect?
+There were three treatment options and degrees of freedom is one less than the amount of treatment variables 
+
+Why are there 33 DF for the Residuals?
+36 observations of complete cases minus three for the amount of variables
+How would you write a results statement?
+
+```{r}
+summary(grow.mod.no.NA)
+```
+
+Practice your interpretation:
+
+Does adding 1 dose of fertilizer change the growth rate significantly from the Control?
+Adding one dose does not change the growth significantly 
+Does adding 2 doses of fertilizer change the growth rate signficantly from the Control?
+Adding two doses does change significantly as the p value is less than .05 
+We won't worry about re-plotting our data right now.
+
+## Linear Regression
+
+Now conduct a linear regression to examine the relationship between `Growth_rate_mm` and `Dried_mass_g`, first with the complete data set and second with the complete cases data set and compare the results of the 2 analyses.
+
+### First attempt: Full data set including NAs (use `df_All_NA`)
+
+You know what to do here. Go for it.
+
+#### Plot and guess
+
+```{r}
+ggplot(df_All_NA, aes(x= Growth_rate_mm, y = Dried_mass_g))+
+  geom_point()+
+  theme_bw()
+```
+
+#### Create model
+
+```{r}
+model.all <- lm(Dried_mass_g ~ Growth_rate_mm, data = df_All_NA)
+```
+
+#### Check assumptions
+
+```{r}
+autoplot(model.all)
+```
+
+Don't worry if assumptions don't look perfect - focus on normality of the data.
+
+#### Interpret model
+
+Use `anova()` first before using `summary()`
+
+```{r}
+anova(model.all)
+summary(model.all)
+```
+
+Why is there 1 degree of freedom for Growth_rate_mm and why are there 34 degrees of freedom for the Residuals?
+
+```{r}
+
+```
+
+### Second attempt: Limited data set with only complete cases (use `df_No_NA`)
+
+#### Plot and guess
+
+```{r}
+ggplot(df_remove_All, aes(x= Growth_rate_mm, y = Dried_mass_g))+
+  geom_point()+
+  theme_bw()
+```
+
+#### Create model
+
+```{r}
+model.no.all <- lm(Dried_mass_g ~ Growth_rate_mm, data = df_remove_All)
+```
+
+#### Check assumptions
+
+```{r}
+autoplot(model.no.all)
+```
+
+Again, don't worry if the assumptions aren't perfect. How do they compare to the first analysis?
+
+#### Interpret model
+
+Use `anova()` first then `summary()`.
+
+```{r}
+anova(model.no.all)
+summary(model.no.all)
+```
+
+Answer the following questions:
+
+1.  How many degrees of freedom are there for Growth_rate_mm? Why?
+There is one degree of freedom because there were two variables 
+2.  How many degrees of freedom are there for Residuals? Why?
+34 degrees of freedom because thats how many datum was collected without NA minus one 
+3.  How are the degrees of freedom in this second model different than the first? What does the answer tell you about the role
+of NA values in the regression analysis?
+They are not different which shows that r doesnt use the NA values in the regression analysis

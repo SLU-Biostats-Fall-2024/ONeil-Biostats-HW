@@ -1,0 +1,100 @@
+---
+title: "Homework-28.qmd"
+format: html
+editor: visual
+---
+
+## Chapter 8 GSWR
+
+setting things up
+
+```{r}
+rm(list=ls())
+library(here)
+library(tidyverse)
+library(ggfortify)
+library(gridExtra)
+```
+
+pull data set in
+
+```{r}
+compensation <- read.csv(here("data", "compensation.csv"))
+```
+
+```{r}
+#BASE scatterplot 
+eg_scatter <- 
+  ggplot(data=compensation, aes( x= Root, y= Fruit)) + geom_point()
+#BASE box and whisker plot 
+eg_box <- 
+   ggplot(data=compensation, aes( x= Root, y= Fruit)) + geom_boxplot()
+grid.arrange(eg_scatter, eg_box, nrow= 1)
+
+```
+
+```{r}
+#using xlab and ylab 
+eg_scatter + xlab("Root Biomass") + ylab("Fruit Production")
+```
+
+```{r}
+#making a graph title 
+eg_scatter + ggtitle("My SUPERB title")
+eg_scatter + labs(title= "My useless title", x= "Root Biomass", y= "Fruit Production")
+```
+
+```{r}
+#changing the range of the axis 
+eg_scatter + xlim(0,20) + ylim(0,140)
+```
+
+```{r}
+#putting text inside the figure 
+eg_scatter + annotate("text", x= c(6,8), y= c(105,25),
+                      label= c("Text up here...", "...and text down here"))
+```
+
+```{r}
+#placing tick mark 
+eg_scatter + scale_x_continuous(limits= c(4,11), breaks = 4:11)
+```
+
+```{r}
+#changing colors based on levels of grouping variable 
+ggplot(data = compensation, aes(x= Root, y= Fruit, colour= Grazing)) + geom_point() + scale_color_manual(values = c(Grazed = "brown", Ungrazed = "green"))
+```
+
+```{r}
+#scale_y_continuous with log10 to for custom breaks 
+eg_box + scale_y_continuous(breaks = seq(from = 10, to = 150, by= 20), trans= "log10")
+```
+
+```{r}
+#adding theme
+eg_scatter + 
+  theme(
+    panel.background = element_rect(fill = NA, color= "black"),
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(colour = "lightblue")
+  )
+```
+
+```{r}
+#putting text on axis 
+eg_box + theme(
+  axis.title.x = element_text(color= "cornflowerblue", size = rel(2)), 
+  axis.text.x = element_text(angle = 45, size = 13, vjust = .5))
+```
+
+```{r}
+#alter the names of levels on the graph
+eg_box + scale_x_discrete(limits = c("Ungrazed", "Grazed"),
+                          labels= c("Control", "Grazed"))
+```
+
+```{r}
+#legends and keys 
+#getting rid of legend 
+ggplot(compensation, aes(x= Root, y= Fruit, color = Grazing)) + geom_point() + theme(legend.position = "none")
+```
